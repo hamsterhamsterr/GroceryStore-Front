@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,9 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(
-    private afAuth: AngularFireAuth,
-    private db: AngularFireDatabase
-  ) {}
+  constructor(private auth: AuthService) {}
 
   login() {
-    this.afAuth.signInWithRedirect(new GoogleAuthProvider());
+    this.auth.login();
   }
 }
