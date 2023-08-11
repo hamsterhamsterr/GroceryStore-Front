@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireAction } from '@angular/fire/compat/database';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
+import { AppUser } from './models/app-user';
+import { UserService } from './user.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,11 @@ import { Observable } from 'rxjs';
 export class AuthService {
   user$: Observable<any>;
 
-  constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute) {
+  constructor(
+    private userService: UserService,
+    private afAuth: AngularFireAuth,
+    private route: ActivatedRoute
+  ) {
     this.user$ = afAuth.authState;
   }
 
@@ -23,5 +29,15 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut();
+  }
+
+  get appUser$(): Observable<AppUser | null> {
+    return this.user$.pipe(
+      switchMap((user) => {
+        if (user) return this.userService.get(user.uid);
+
+        return new Observable<null>();
+      })
+    );
   }
 }
