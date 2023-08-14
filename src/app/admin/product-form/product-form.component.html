@@ -28,10 +28,12 @@
         type="number"
         class="form-control"
         required
+        pattern="^\d{0,8}(\.\d{1,4})?$"
       />
     </div>
     <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-      Price is required.
+      <div *ngIf="price.errors!['required']">Price is required</div>
+      <div *ngIf="price.errors!['pattern']">Price is invalid</div>
     </div>
   </div>
   <div class="form-group">
@@ -66,12 +68,14 @@
       type="text"
       class="form-control"
       required
+      pattern="^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$"
     />
     <div
       class="alert alert-danger"
       *ngIf="imageUrl.touched && imageUrl.invalid"
     >
-      Image URL is required.
+      <div *ngIf="imageUrl.errors!['required']">Image URL is required.</div>
+      <div *ngIf="imageUrl.errors!['pattern']">Please enter a valid URL.</div>
     </div>
   </div>
   <button class="btn btn-primary">Save</button>
