@@ -21,4 +21,8 @@ export class ProductService {
   getAll(): Observable<any> {
     return this.db.list('/products').valueChanges();
   }
+
+  get(productId: string): Observable<any> {
+    return this.db.object('/products/' + productId).valueChanges();
+  }
 }
