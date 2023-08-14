@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
@@ -12,8 +13,9 @@ export class ProductFormComponent {
   categories$: Observable<any>;
 
   constructor(
-    categoryService: CategoryService,
-    private productService: ProductService
+    private categoryService: CategoryService,
+    private productService: ProductService,
+    private router: Router
   ) {
     this.categories$ = categoryService.getCategories();
     this.categories$.subscribe((list) => {
@@ -23,5 +25,6 @@ export class ProductFormComponent {
 
   save(product: any) {
     this.productService.create(product);
+    this.router.navigate(['/admin/products']);
   }
 }
