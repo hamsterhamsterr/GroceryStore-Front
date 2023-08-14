@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/product.service';
 export class ProductFormComponent {
   categories$: Observable<any>;
   product: any = {};
+  id: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -21,16 +22,18 @@ export class ProductFormComponent {
   ) {
     this.categories$ = categoryService.getCategories();
 
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id)
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id)
       this.productService
-        .get(id)
+        .get(this.id)
         .pipe(take(1))
         .subscribe((p) => (this.product = p));
   }
 
   save(product: any) {
-    this.productService.create(product);
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
+
     this.router.navigate(['/admin/products']);
   }
 }
