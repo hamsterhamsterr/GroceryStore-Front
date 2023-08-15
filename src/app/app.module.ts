@@ -26,6 +26,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ProductService } from './product.service';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
   ],
   providers: [
     AuthService,

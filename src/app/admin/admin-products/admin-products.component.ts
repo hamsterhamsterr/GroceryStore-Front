@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/product.service';
 export class AdminProductsComponent implements OnDestroy {
   products!: Product[];
   filteredProducts!: any[];
+  displayedColumns: string[] = ['position', 'title', 'price', 'edit'];
   subscription: Subscription;
 
   constructor(private productService: ProductService) {

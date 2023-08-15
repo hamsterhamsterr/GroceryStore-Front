@@ -19,7 +19,10 @@ export class AppComponent {
         userService.save(user);
 
         let returnUrl: any = localStorage.getItem('returnUrl');
-        if (returnUrl) router.navigateByUrl(returnUrl);
+        if (returnUrl) {
+          router.navigateByUrl(returnUrl);
+          localStorage.removeItem('returnUrl');
+        }
       }
     });
   }
