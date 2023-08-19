@@ -9,9 +9,7 @@ export class ShoppingCart {
 
     for (let productId in itemsMap) {
       let item = itemsMap[productId];
-      let x = new ShoppingCartItem();
-      Object.assign(x, item);
-      this.items.push(x);
+      this.items.push(new ShoppingCartItem({ ...item }));
     }
   }
 
