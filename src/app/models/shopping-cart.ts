@@ -3,6 +3,10 @@ import { ShoppingCartItem } from './shopping-cart-item';
 export class ShoppingCart {
   constructor(public items: ShoppingCartItem[]) {}
 
+  get productIds(): any {
+    return Object.keys(this.items);
+  }
+
   get totalItemsCount() {
     let count = 0;
 
