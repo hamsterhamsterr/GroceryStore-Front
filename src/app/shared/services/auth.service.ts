@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { AppUser } from './models/app-user';
+import { AppUser } from 'shared/models/app-user';
 import { UserService } from './user.service';
 import { of } from 'rxjs';
 

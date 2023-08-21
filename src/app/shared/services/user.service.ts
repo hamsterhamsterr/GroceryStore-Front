@@ -3,7 +3,7 @@ import {
   AngularFireDatabase,
   AngularFireObject,
 } from '@angular/fire/compat/database';
-import { AppUser } from './models/app-user';
+import { AppUser } from 'shared/models/app-user';
 import { Observable } from 'rxjs';
 
 @Injectable({

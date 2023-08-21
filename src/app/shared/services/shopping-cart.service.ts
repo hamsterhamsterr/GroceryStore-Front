@@ -3,9 +3,9 @@ import {
   AngularFireDatabase,
   AngularFireObject,
 } from '@angular/fire/compat/database';
-import { Product } from './models/product';
+import { Product } from 'shared/models/product';
 import { Observable, map, take } from 'rxjs';
-import { ShoppingCart } from './models/shopping-cart';
+import { ShoppingCart } from 'shared/models/shopping-cart';
 
 @Injectable({
   providedIn: 'root',
