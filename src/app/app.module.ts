@@ -18,25 +18,17 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from 'shared/services/auth.service';
-import { AuthGuard } from 'shared/services/auth-guard.service';
-import { UserService } from 'shared/services/user.service';
 import { AdminAuthGuard as AdminAuthGuard } from 'shared/services/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from 'shared/services/category.service';
 import { FormsModule } from '@angular/forms';
-import { ProductService } from 'shared/services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
-import { ProductQuantityComponent } from 'shared/components/product-quantity/product-quantity.component';
-import { OrderService } from 'shared/services/order.service';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { SharedModule } from 'shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -53,13 +45,13 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent,
-    ProductQuantityComponent,
+
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -71,16 +63,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     MatPaginatorModule,
     MatSortModule,
   ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    UserService,
-    AdminAuthGuard,
-    CategoryService,
-    ProductService,
-    ShoppingCartService,
-    OrderService,
-  ],
+  providers: [AdminAuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
