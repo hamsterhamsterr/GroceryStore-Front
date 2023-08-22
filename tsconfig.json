@@ -29,6 +29,9 @@
       ],
       "admin/*": [
         "src/app/admin/*"
+      ],
+      "shopping/*": [
+        "src/app/shopping/*"
       ]
     }
   },
