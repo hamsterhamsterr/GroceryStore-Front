@@ -26,6 +26,9 @@
     "paths": {
       "shared/*": [
         "src/app/shared/*"
+      ],
+      "admin/*": [
+        "src/app/admin/*"
       ]
     }
   },

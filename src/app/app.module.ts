@@ -15,11 +15,11 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
-import { AdminAuthGuard as AdminAuthGuard } from 'shared/services/admin-auth-guard.service';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { AdminAuthGuard as AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { ProductFormComponent } from './admin/components/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -29,6 +29,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { SharedModule } from 'shared/shared.module';
+import { AdminModule } from 'admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -40,18 +41,15 @@ import { SharedModule } from 'shared/shared.module';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
     ProductFilterComponent,
-
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
   ],
   imports: [
     BrowserModule,
     SharedModule,
+    AdminModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -63,7 +61,7 @@ import { SharedModule } from 'shared/shared.module';
     MatPaginatorModule,
     MatSortModule,
   ],
-  providers: [AdminAuthGuard],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
