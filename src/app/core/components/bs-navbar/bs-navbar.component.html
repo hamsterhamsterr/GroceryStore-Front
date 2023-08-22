@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="/">O</a>
+  <a class="navbar-brand" href="/"><i class="fa-solid fa-leaf"></i></a>
   <button
     class="navbar-toggler"
     type="button"
@@ -16,7 +16,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
-          Shopping-cart
+          <i class="fa-solid fa-cart-shopping"></i>
           <span
             class="badge badge-warning badge-pill"
             *ngIf="cart$ | async as cart"
