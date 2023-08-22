@@ -9,11 +9,44 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    RouterModule,
+  ],
   declarations: [ProductCardComponent, ProductQuantityComponent],
-  exports: [ProductCardComponent, ProductQuantityComponent],
+  exports: [
+    ProductCardComponent,
+    ProductQuantityComponent,
+    CommonModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    RouterModule,
+  ],
   providers: [
     AuthService,
     AuthGuard,
