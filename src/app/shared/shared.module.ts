@@ -18,6 +18,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { CategoryAspService } from './services/category-asp.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -31,6 +33,7 @@ import { RouterModule } from '@angular/router';
     NgbModule,
     BrowserAnimationsModule,
     RouterModule,
+    HttpClientModule,
   ],
   declarations: [ProductCardComponent, ProductQuantityComponent],
   exports: [
@@ -52,6 +55,7 @@ import { RouterModule } from '@angular/router';
     AuthGuard,
     UserService,
     CategoryService,
+    CategoryAspService,
     ProductService,
     ShoppingCartService,
     OrderService,
