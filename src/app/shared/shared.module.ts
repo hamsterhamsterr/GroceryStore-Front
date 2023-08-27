@@ -18,8 +18,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { CategoryAspService } from './services/category-asp.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryAspService } from './services/category-asp.service';
+import { ProductsAspService } from './services/products-asp.service';
 
 @NgModule({
   imports: [
@@ -55,10 +56,11 @@ import { HttpClientModule } from '@angular/common/http';
     AuthGuard,
     UserService,
     CategoryService,
-    CategoryAspService,
     ProductService,
     ShoppingCartService,
     OrderService,
+    CategoryAspService,
+    ProductsAspService,
   ],
 })
 export class SharedModule {}

@@ -5,6 +5,7 @@ import { ProductService } from 'shared/services/product.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { ProductsAspService } from 'shared/services/products-asp.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -21,9 +22,12 @@ export class AdminProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private productASPService: ProductsAspService
+  ) {
     this.filteredProducts! = new MatTableDataSource();
-    this.subscription = this.productService
+    this.subscription = this.productASPService
       .getAll()
       .subscribe(
         (products) => (this.filteredProducts.data = this.products = products)

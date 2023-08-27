@@ -23,4 +23,10 @@ export class CategoryAspService {
       })
     );
   }
+
+  getByNameIdentificator(nameIdentificator: string) {
+    return this.http.get(
+      'http://localhost:5075/api/Categories/' + nameIdentificator
+    );
+  }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'shared/models/product';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { ProductsAspService } from 'shared/services/products-asp.service';
 
 @Component({
   selector: 'app-products',
@@ -19,6 +20,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private productASPService: ProductsAspService,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService
   ) {}
@@ -29,10 +31,11 @@ export class ProductsComponent implements OnInit {
   }
 
   private populateProducts() {
-    this.productService
+    this.productASPService
       .getAll()
       .pipe(
         switchMap((products) => {
+          console.log(products);
           this.products = products;
           return this.route.queryParamMap;
         })
