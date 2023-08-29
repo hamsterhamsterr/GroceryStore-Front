@@ -3,10 +3,18 @@ import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from 'shared/shared.module';
+import { LoginASPComponent } from './components/login-asp/login-asp.component';
+import { SignUpAspComponent } from './components/sign-up-asp/sign-up-asp.component';
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [BsNavbarComponent, HomeComponent, LoginComponent],
+  declarations: [
+    BsNavbarComponent,
+    HomeComponent,
+    LoginComponent,
+    LoginASPComponent,
+    SignUpAspComponent,
+  ],
   exports: [BsNavbarComponent],
 })
 export class CoreModule {}

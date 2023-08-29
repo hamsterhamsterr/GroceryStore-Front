@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryAspService } from './services/category-asp.service';
 import { ProductsAspService } from './services/products-asp.service';
+import { AuthAspService } from './services/auth-asp.service';
 
 @NgModule({
   imports: [
@@ -61,6 +62,7 @@ import { ProductsAspService } from './services/products-asp.service';
     OrderService,
     CategoryAspService,
     ProductsAspService,
+    AuthAspService,
   ],
 })
 export class SharedModule {}

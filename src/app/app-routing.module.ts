@@ -5,6 +5,8 @@ import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopp
 import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
 import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
 import { LoginComponent } from './core/components/login/login.component';
+import { LoginASPComponent } from './core/components/login-asp/login-asp.component';
+import { SignUpAspComponent } from './core/components/sign-up-asp/sign-up-asp.component';
 import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
 import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login-asp', component: LoginASPComponent },
+  { path: 'sign-up-asp', component: SignUpAspComponent },
 
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
   {
