@@ -5,6 +5,7 @@ import { AuthService } from 'shared/services/auth.service';
 import { AppUser } from 'shared/models/app-user';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { AuthAspService } from 'shared/services/auth-asp.service';
 
 @Component({
   selector: 'bs-navbar',
@@ -17,16 +18,17 @@ export class BsNavbarComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
+    private authASP: AuthAspService,
     private shoppingCartService: ShoppingCartService
   ) {}
 
   async ngOnInit() {
-    this.auth.appUser$.subscribe((appUser) => (this.appUser = appUser));
+    this.appUser = this.authASP.user;
 
     this.cart$ = await this.shoppingCartService.getCart();
   }
 
   logout() {
-    this.auth.logout();
+    this.authASP.logout();
   }
 }

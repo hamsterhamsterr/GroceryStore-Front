@@ -3,14 +3,21 @@ import { CanActivate } from '@angular/router';
 import { AuthService } from 'shared/services/auth.service';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from 'shared/services/user.service';
+import { AuthAspService } from 'shared/services/auth-asp.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminAuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private userService: UserService) {}
+  constructor(
+    private auth: AuthService,
+    private userService: UserService,
+    private authASP: AuthAspService
+  ) {}
 
-  canActivate(): Observable<boolean> {
-    return this.auth.appUser$.pipe(map((appUser: any) => appUser.isAdmin));
+  canActivate(): boolean {
+    let user = this.authASP.user;
+    if (!user) return false;
+    return user.isAdmin;
   }
 }

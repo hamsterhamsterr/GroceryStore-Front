@@ -13,10 +13,6 @@ import { ShoppingCart } from 'shared/models/shopping-cart';
 export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {}
 
-  async removeFromCart(product: Product) {
-    this.updateItem(product, -1);
-  }
-
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db
@@ -27,6 +23,10 @@ export class ShoppingCartService {
 
   async addToCart(product: Product) {
     this.updateItem(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItem(product, -1);
   }
 
   async clearCart() {
