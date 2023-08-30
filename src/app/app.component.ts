@@ -3,6 +3,7 @@ import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'shared/services/user.service';
 import { AuthAspService } from 'shared/services/auth-asp.service';
+import { ShoppingCartAspService } from 'shared/services/shopping-cart-asp.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent {
     private userService: UserService,
     private auth: AuthService,
     router: Router,
-    private authASP: AuthAspService
+    private authASP: AuthAspService,
+    private shoppingCartAsp: ShoppingCartAspService
   ) {
     this.authASP.user;
 

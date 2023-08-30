@@ -63,9 +63,8 @@ export class ProductsAspService {
   }
 
   delete(productId: string) {
-    console.log(productId);
     this.http
       .delete('http://localhost:5075/api/Products/' + productId)
-      .subscribe((r) => console.log(r));
+      .subscribe();
   }
 }

@@ -17,10 +17,7 @@ export class AuthAspService {
         password: password,
       })
       .subscribe((response: any) => {
-        localStorage.setItem(
-          'grocery-store-jwt-token',
-          JSON.stringify(response.token)
-        );
+        localStorage.setItem('grocery-store-jwt-token', response.token);
       });
   }
 
@@ -31,10 +28,7 @@ export class AuthAspService {
         password: password,
       })
       .subscribe((response: any) => {
-        localStorage.setItem(
-          'grocery-store-jwt-token',
-          JSON.stringify(response.token)
-        );
+        localStorage.setItem('grocery-store-jwt-token', response.token);
       });
   }
 
@@ -47,7 +41,6 @@ export class AuthAspService {
     if (!token) return null;
 
     let decodedToken: any = jwt_decode(token);
-    console.log('role', decodedToken.role);
 
     return {
       name: decodedToken.name,
