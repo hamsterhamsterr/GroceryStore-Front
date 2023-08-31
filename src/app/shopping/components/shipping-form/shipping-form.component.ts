@@ -5,13 +5,15 @@ import { OrderService } from 'shared/services/order.service';
 import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import jwt_decode from 'jwt-decode';
+import { OrderAspService } from 'shared/services/order-asp.service';
 
 @Component({
   selector: 'shipping-form',
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.css'],
 })
-export class ShippingFormComponent implements OnInit, OnDestroy {
+export class ShippingFormComponent implements OnInit {
   @Input('cart') cart!: ShoppingCart;
 
   shipping = {
@@ -20,29 +22,24 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     addressLine2: 'line2',
     city: 'city',
   };
-  userSubscription!: Subscription;
   userId!: string;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private orderASPService: OrderAspService
   ) {}
 
   ngOnInit() {
-    //TODO: Get user from AuthASPService
-    this.userSubscription = this.authService.user$.subscribe(
-      (user) => (this.userId = user.uid)
-    );
-  }
-
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    let token = localStorage.getItem('grocery-store-jwt-token');
+    if (token) this.userId = (<any>jwt_decode(token)).userId;
   }
 
   async placeOrder() {
     let order = new Order(this.userId, this.shipping, this.cart);
-    let result = await this.orderService.placeOrder(order);
-    this.router.navigate(['/order-success', result.key]);
+    this.orderASPService.placeOrder(order).subscribe((orderId: any) => {
+      this.router.navigate(['/order-success', orderId]);
+    });
   }
 }

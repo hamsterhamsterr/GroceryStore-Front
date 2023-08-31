@@ -14,6 +14,7 @@ export class Order {
     this.items = shoppingCart.items.map((i) => {
       return {
         product: {
+          id: i.id,
           title: i.title,
           imageUrl: i.imageUrl,
           price: i.price,

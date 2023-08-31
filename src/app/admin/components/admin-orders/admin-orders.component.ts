@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrderAspService } from 'shared/services/order-asp.service';
 import { OrderService } from 'shared/services/order.service';
 
 @Component({
@@ -8,9 +9,13 @@ import { OrderService } from 'shared/services/order.service';
   styleUrls: ['./admin-orders.component.css'],
 })
 export class AdminOrdersComponent {
-  orders$: Observable<any>;
+  orders$!: Observable<any>;
 
-  constructor(private orderService: OrderService) {
-    this.orders$ = orderService.getOrders().valueChanges();
+  constructor(
+    private orderService: OrderService,
+    private orderASPService: OrderAspService
+  ) {
+    this.orders$ = orderASPService.getOrders();
+    // this.orders$ = orderService.getOrders().valueChanges();
   }
 }

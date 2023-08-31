@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'shared/services/auth.service';
 import { OrderService } from 'shared/services/order.service';
 import { Observable, switchMap } from 'rxjs';
+import { OrderAspService } from 'shared/services/order-asp.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -13,13 +14,15 @@ export class MyOrdersComponent {
 
   constructor(
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private orderASPService: OrderAspService
   ) {
-    //TODO: Get user from authASPService
-    this.orders$ = authService.user$.pipe(
-      switchMap((u: any) => {
-        return orderService.getOrdersByUser(u.uid).valueChanges();
-      })
-    );
+    // this.orders$ = authService.user$.pipe(
+    //   switchMap((u: any) => {
+    //     return orderService.getOrdersByUser(u.uid).valueChanges();
+    //   })
+    // );
+
+    this.orders$ = orderASPService.getOrdersByUser();
   }
 }
