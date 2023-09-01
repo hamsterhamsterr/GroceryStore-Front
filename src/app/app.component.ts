@@ -18,8 +18,6 @@ export class AppComponent {
     private authASP: AuthAspService,
     private shoppingCartAsp: ShoppingCartAspService
   ) {
-    this.authASP.user;
-
     let returnUrl = localStorage.getItem('returnUrl');
     if (returnUrl) {
       localStorage.removeItem('returnUrl');
