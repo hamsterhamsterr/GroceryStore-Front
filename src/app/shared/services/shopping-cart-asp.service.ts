@@ -12,6 +12,7 @@ import {
 import { Product } from 'shared/models/product';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { ShoppingCartItem } from 'shared/models/shopping-cart-item';
+import * as uuid from 'uuid';
 import { ShippingFormComponent } from 'shopping/components/shipping-form/shipping-form.component';
 
 @Injectable({
@@ -29,7 +30,11 @@ export class ShoppingCartAspService {
   addToCart(product: Product) {
     let token = localStorage.getItem('grocery-store-jwt-token');
 
-    if (!token) throw Error('Jwt token doesnt exist in local storage');
+    if (!token) {
+      this.addToLocalCart(product);
+      return;
+    }
+
     this.http
       .post('http://localhost:5075/api/ShoppingCart/AddProduct', product.id, {
         headers: {
@@ -47,7 +52,11 @@ export class ShoppingCartAspService {
   removeFromCart(product: Product) {
     let token = localStorage.getItem('grocery-store-jwt-token');
 
-    if (!token) throw Error('Jwt token doesnt exist in local storage');
+    if (!token) {
+      this.removeFromLocalCart(product);
+      return;
+    }
+
     this.http
       .delete('http://localhost:5075/api/ShoppingCart/' + product.id, {
         headers: {
@@ -65,7 +74,10 @@ export class ShoppingCartAspService {
   clearCart() {
     let token = localStorage.getItem('grocery-store-jwt-token');
 
-    if (!token) throw Error('Jwt token doesnt exist in local storage');
+    if (!token) {
+      this.clearLocalCart();
+      return;
+    }
 
     this.http
       .delete('http://localhost:5075/api/ShoppingCart/ClearCart', {
@@ -90,7 +102,7 @@ export class ShoppingCartAspService {
   private getCart(): Observable<ShoppingCart> {
     let token = localStorage.getItem('grocery-store-jwt-token');
 
-    if (!token) throw Error('Jwt token doesnt exist in local storage');
+    if (!token) return this.getLocalCart();
 
     return this.http
       .get('http://localhost:5075/api/ShoppingCart', {
@@ -115,5 +127,85 @@ export class ShoppingCartAspService {
           return new ShoppingCart(itemsMap);
         })
       );
+  }
+
+  private getLocalCart(): any {
+    let cartId = this.getLocalCartId();
+    return this.http
+      .get('http://localhost:5075/api/AnonShoppingCart/GetCart', {
+        headers: { localStorageCartId: cartId },
+      })
+      .pipe(
+        map((cart: any) => {
+          let itemsMap: any = {};
+          for (let item of cart.anonShoppingCartItems) {
+            itemsMap[item.productId] = new ShoppingCartItem({
+              id: item.productId,
+              title: item.product.title,
+              imageUrl: item.product.imageUrl,
+              price: item.product.price,
+              category: item.product.category.nameIdentificator,
+              quantity: item.quantity,
+            });
+          }
+
+          return new ShoppingCart(itemsMap);
+        })
+      );
+  }
+
+  private getLocalCartId(): string {
+    let cartId = localStorage.getItem('local-cart-id');
+    if (cartId) return cartId;
+    localStorage.setItem('local-cart-id', uuid.v4());
+    return localStorage.getItem('local-cart-id')!;
+  }
+
+  private addToLocalCart(product: Product) {
+    let cartId = this.getLocalCartId();
+    this.http
+      .post(
+        'http://localhost:5075/api/AnonShoppingCart/AddProductToCart',
+        product.id,
+        {
+          headers: { localStorageCartId: cartId },
+        }
+      )
+      .pipe(
+        tap(() => {
+          this.shareUpdatedCart();
+        })
+      )
+      .subscribe();
+  }
+
+  private removeFromLocalCart(product: Product) {
+    let cartId = this.getLocalCartId();
+
+    this.http
+      .delete('http://localhost:5075/api/AnonShoppingCart/' + product.id, {
+        headers: { localStorageCartId: cartId },
+      })
+      .pipe(
+        tap(() => {
+          this.shareUpdatedCart();
+        })
+      )
+      .subscribe();
+  }
+
+  private clearLocalCart() {
+    let cartId = this.getLocalCartId();
+
+    this.http
+      .delete('http://localhost:5075/api/AnonShoppingCart/ClearCart', {
+        headers: { localStorageCartId: cartId },
+      })
+      .pipe(
+        tap(() => {
+          this.shareUpdatedCart();
+        })
+      )
+      .subscribe();
   }
 }
