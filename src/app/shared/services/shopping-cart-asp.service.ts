@@ -93,6 +93,36 @@ export class ShoppingCartAspService {
       .subscribe();
   }
 
+  replaceAnonCartToUserCart() {
+    let token = localStorage.getItem('grocery-store-jwt-token');
+
+    if (!token) throw new Error("Token doesn't exists");
+
+    this.http
+      .post(
+        'http://localhost:5075/api/ShoppingCart/ReplaceAnonCartToUserCart',
+        {},
+        {
+          headers: {
+            Authentication: token,
+            localStorageCartId: this.getLocalCartId(),
+          },
+        }
+      )
+      .pipe(
+        tap(() => {
+          this.shareUpdatedCart();
+          localStorage.removeItem('local-cart-id');
+        })
+      )
+      .subscribe();
+  }
+
+  replaceUserCartToAnonCart() {
+    this.createLocalCart();
+    this.shareUpdatedCart();
+  }
+
   private shareUpdatedCart() {
     this.getCart().subscribe((cart) => {
       this.cartSource.next(cart);
@@ -157,8 +187,12 @@ export class ShoppingCartAspService {
   private getLocalCartId(): string {
     let cartId = localStorage.getItem('local-cart-id');
     if (cartId) return cartId;
-    localStorage.setItem('local-cart-id', uuid.v4());
+    this.createLocalCart();
     return localStorage.getItem('local-cart-id')!;
+  }
+
+  private createLocalCart() {
+    localStorage.setItem('local-cart-id', uuid.v4());
   }
 
   private addToLocalCart(product: Product) {

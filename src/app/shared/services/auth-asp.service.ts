@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { AppUser } from 'shared/models/app-user';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { ShoppingCartAspService } from './shopping-cart-asp.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ export class AuthAspService {
   private userSource = new Subject<AppUser | null>();
   user$ = this.userSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private cartASP: ShoppingCartAspService
+  ) {}
 
   register(email: string, password: string) {
     this.http
@@ -23,6 +27,7 @@ export class AuthAspService {
       .subscribe((response: any) => {
         localStorage.setItem('grocery-store-jwt-token', response.token);
         this.userSource.next(this.getUser());
+        this.cartASP.replaceAnonCartToUserCart();
       });
   }
 
@@ -35,12 +40,14 @@ export class AuthAspService {
       .subscribe((response: any) => {
         localStorage.setItem('grocery-store-jwt-token', response.token);
         this.userSource.next(this.getUser());
+        this.cartASP.replaceAnonCartToUserCart();
       });
   }
 
   logout() {
     localStorage.removeItem('grocery-store-jwt-token');
     this.userSource.next(this.getUser());
+    this.cartASP.replaceUserCartToAnonCart();
   }
 
   get user(): AppUser | null {
