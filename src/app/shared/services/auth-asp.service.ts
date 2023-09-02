@@ -18,9 +18,16 @@ export class AuthAspService {
     private cartASP: ShoppingCartAspService
   ) {}
 
-  register(email: string, password: string) {
+  register(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) {
     this.http
       .post('http://localhost:5075/api/Account/register', {
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password,
       })

@@ -10,8 +10,18 @@ import { AuthAspService } from 'shared/services/auth-asp.service';
 export class SignUpAspComponent {
   constructor(private authAspService: AuthAspService, private router: Router) {}
 
-  registerUser(form: { email: string; password: string }) {
-    this.authAspService.register(form.email, form.password);
+  registerUser(form: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) {
+    this.authAspService.register(
+      form.firstName,
+      form.lastName,
+      form.email,
+      form.password
+    );
     this.router.navigate(['/']);
   }
 }

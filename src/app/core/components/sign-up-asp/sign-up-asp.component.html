@@ -4,6 +4,41 @@
     <div class="col-md-4">
       <form (ngSubmit)="registerUser(f.value)" #f="ngForm">
         <div class="form-group">
+          <label for="">First Name</label>
+          <input
+            #firstName="ngModel"
+            ngModel
+            name="firstName"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Last Name</label>
+          <input
+            #lastName="ngModel"
+            ngModel
+            name="lastName"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="lastName.touched && lastName.invalid"
+          >
+            Last name is required
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="">Email</label>
           <input
             #email="ngModel"
@@ -20,7 +55,7 @@
           >
             <div *ngIf="email.errors!['required']">Email is required</div>
             <div *ngIf="email.errors!['pattern']">
-              Please enter a valid URL.
+              Please enter a valid Email.
             </div>
           </div>
         </div>
