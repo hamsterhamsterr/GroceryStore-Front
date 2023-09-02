@@ -75,6 +75,8 @@ export class AuthAspService {
     let decodedToken: any = jwt_decode(token);
 
     return {
+      firstName: decodedToken.firstName,
+      lastName: decodedToken.lastName,
       name: decodedToken.name,
       email: decodedToken.name,
       isAdmin: decodedToken.role == 'Admin' ? true : false,
@@ -88,6 +90,8 @@ export class AuthAspService {
     let decodedToken: any = jwt_decode(token);
 
     return {
+      firstName: decodedToken.firstName,
+      lastName: decodedToken.lastName,
       name: decodedToken.name,
       email: decodedToken.name,
       isAdmin: decodedToken.role == 'Admin' ? true : false,
