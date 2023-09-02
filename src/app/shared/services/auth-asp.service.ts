@@ -31,17 +31,28 @@ export class AuthAspService {
       });
   }
 
-  login(email: string, password: string) {
+  login(
+    email: string,
+    password: string,
+    successHandler: () => void,
+    unauthorizedHandler: () => void
+  ) {
     this.http
       .post('http://localhost:5075/api/Account/login', {
         email: email,
         password: password,
       })
-      .subscribe((response: any) => {
-        localStorage.setItem('grocery-store-jwt-token', response.token);
-        this.userSource.next(this.getUser());
-        this.cartASP.replaceAnonCartToUserCart();
-      });
+      .subscribe(
+        (response: any) => {
+          localStorage.setItem('grocery-store-jwt-token', response.token);
+          this.userSource.next(this.getUser());
+          this.cartASP.replaceAnonCartToUserCart();
+          successHandler();
+        },
+        (error) => {
+          unauthorizedHandler();
+        }
+      );
   }
 
   logout() {

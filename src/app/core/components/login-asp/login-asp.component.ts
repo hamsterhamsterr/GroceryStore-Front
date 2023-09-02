@@ -8,10 +8,21 @@ import { AuthAspService } from 'shared/services/auth-asp.service';
   styleUrls: ['./login-asp.component.css'],
 })
 export class LoginASPComponent {
+  invalidEmailOrAndPassword: boolean = false;
+
   constructor(private authAspService: AuthAspService, private router: Router) {}
 
   loginUser(form: { email: string; password: string }) {
-    this.authAspService.login(form.email, form.password);
-    this.router.navigate(['/']);
+    this.authAspService.login(
+      form.email,
+      form.password,
+      () => this.router.navigate(['/']),
+      () => (this.invalidEmailOrAndPassword = true)
+    );
+    // this.router.navigate(['/']);
+  }
+
+  closeInvalidEmailOrAndPasswordAlert() {
+    this.invalidEmailOrAndPassword = false;
   }
 }
