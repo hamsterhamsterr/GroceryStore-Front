@@ -37,7 +37,7 @@ export class OrderAspService {
           orderItems: orderItems,
         },
         {
-          headers: { Authentication: token },
+          headers: { Authentication: token, Authorization: 'Bearer ' + token },
         }
       )
       .pipe(tap(() => this.shoppingCartASPService.clearCart()));
@@ -48,7 +48,7 @@ export class OrderAspService {
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
     return this.http.get('http://localhost:5075/api/Orders/GetAllOrders', {
-      headers: { Authentication: token },
+      headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
 
@@ -57,7 +57,7 @@ export class OrderAspService {
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
     return this.http.get('http://localhost:5075/api/Orders/GetOrdersByUser', {
-      headers: { Authentication: token },
+      headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
 
@@ -66,7 +66,7 @@ export class OrderAspService {
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
     return this.http.get('http://localhost:5075/api/Orders/' + orderId, {
-      headers: { Authentication: token },
+      headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
 }

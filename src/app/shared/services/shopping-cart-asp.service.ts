@@ -38,6 +38,7 @@ export class ShoppingCartAspService {
     this.http
       .post('http://localhost:5075/api/ShoppingCart/AddProduct', product.id, {
         headers: {
+          Authorization: 'Bearer ' + token,
           Authentication: token,
         },
       })
@@ -60,6 +61,7 @@ export class ShoppingCartAspService {
     this.http
       .delete('http://localhost:5075/api/ShoppingCart/' + product.id, {
         headers: {
+          Authorization: 'Bearer ' + token,
           Authentication: token,
         },
       })
@@ -82,6 +84,7 @@ export class ShoppingCartAspService {
     this.http
       .delete('http://localhost:5075/api/ShoppingCart/ClearCart', {
         headers: {
+          Authorization: 'Bearer ' + token,
           Authentication: token,
         },
       })
@@ -137,6 +140,7 @@ export class ShoppingCartAspService {
     return this.http
       .get('http://localhost:5075/api/ShoppingCart', {
         headers: {
+          Authorization: 'Bearer ' + token,
           Authentication: token,
         },
       })
