@@ -60,4 +60,13 @@ export class OrderAspService {
       headers: { Authentication: token },
     });
   }
+
+  getOrderByUser(orderId: string): Observable<any> {
+    let token = localStorage.getItem('grocery-store-jwt-token');
+    if (!token) throw Error('Jwt token doesnt exist in local storage');
+
+    return this.http.get('http://localhost:5075/api/Orders/' + orderId, {
+      headers: { Authentication: token },
+    });
+  }
 }

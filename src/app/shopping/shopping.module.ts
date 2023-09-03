@@ -8,6 +8,7 @@ import { ProductFilterComponent } from './components/products/product-filter/pro
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { SharedModule } from 'shared/shared.module';
+import { ViewOrderComponent } from './components/view-order/view-order.component';
 
 @NgModule({
   imports: [SharedModule],
@@ -20,6 +21,7 @@ import { SharedModule } from 'shared/shared.module';
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
+    ViewOrderComponent,
   ],
 })
 export class ShoppingModule {}

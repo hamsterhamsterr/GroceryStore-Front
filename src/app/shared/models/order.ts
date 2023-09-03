@@ -1,6 +1,7 @@
 import { ShoppingCart } from './shopping-cart';
 
 export class Order {
+  orderId!: number;
   datePlaced: number;
   items!: any[];
 
