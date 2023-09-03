@@ -17,12 +17,6 @@ export class MyOrdersComponent {
     private orderService: OrderService,
     private orderASPService: OrderAspService
   ) {
-    // this.orders$ = authService.user$.pipe(
-    //   switchMap((u: any) => {
-    //     return orderService.getOrdersByUser(u.uid).valueChanges();
-    //   })
-    // );
-
     this.orders$ = orderASPService.getOrdersByUser();
   }
 }

@@ -35,6 +35,11 @@ const routes: Routes = [
     component: ViewOrderComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/orders/view-order/:id',
+    component: ViewOrderComponent,
+    canActivate: [AuthGuard, AdminAuthGuard],
+  },
 
   {
     path: 'admin/products/new',
