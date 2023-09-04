@@ -17,10 +17,10 @@ export class ShippingFormComponent implements OnInit {
   @Input('cart') cart!: ShoppingCart;
 
   shipping = {
-    name: 'name',
-    addressLine1: 'line1',
-    addressLine2: 'line2',
-    city: 'city',
+    name: '',
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
   };
   userId!: string;
 
