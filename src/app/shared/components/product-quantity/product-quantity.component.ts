@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from 'shared/models/product';
 import { ShoppingCartAspService } from 'shared/services/shopping-cart-asp.service';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Component({
   selector: 'product-quantity',
@@ -12,10 +11,7 @@ export class ProductQuantityComponent {
   @Input('product') product!: Product;
   @Input('shopping-cart') shoppingCart: any;
 
-  constructor(
-    private cartService: ShoppingCartService,
-    private cartASPService: ShoppingCartAspService
-  ) {}
+  constructor(private cartASPService: ShoppingCartAspService) {}
 
   addToCart() {
     // this.cartService.addToCart(this.product);

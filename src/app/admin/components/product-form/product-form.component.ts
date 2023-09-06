@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { CategoryAspService } from 'shared/services/category-asp.service';
-import { ProductService } from 'shared/services/product.service';
 import { ProductsAspService } from 'shared/services/products-asp.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class ProductFormComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
     private categoryService: CategoryAspService,
     private productASPService: ProductsAspService,
     private router: Router

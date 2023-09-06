@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'shared/services/auth.service';
-import { OrderService } from 'shared/services/order.service';
 import { Observable, switchMap } from 'rxjs';
 import { OrderAspService } from 'shared/services/order-asp.service';
 
@@ -12,11 +10,7 @@ import { OrderAspService } from 'shared/services/order-asp.service';
 export class MyOrdersComponent {
   orders$: Observable<any>;
 
-  constructor(
-    private authService: AuthService,
-    private orderService: OrderService,
-    private orderASPService: OrderAspService
-  ) {
+  constructor(private orderASPService: OrderAspService) {
     this.orders$ = orderASPService.getOrdersByUser();
   }
 }

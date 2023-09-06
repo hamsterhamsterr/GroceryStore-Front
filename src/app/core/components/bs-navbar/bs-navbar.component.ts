@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
-import { AuthService } from 'shared/services/auth.service';
 import { AppUser } from 'shared/models/app-user';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { AuthAspService } from 'shared/services/auth-asp.service';
 import { ShoppingCartAspService } from 'shared/services/shopping-cart-asp.service';
@@ -25,9 +23,7 @@ export class BsNavbarComponent implements OnInit {
   cart$!: Observable<ShoppingCart>;
 
   constructor(
-    private auth: AuthService,
     private authASP: AuthAspService,
-    private shoppingCartService: ShoppingCartService,
     private shoppingCartASPService: ShoppingCartAspService
   ) {}
 

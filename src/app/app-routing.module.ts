@@ -4,7 +4,6 @@ import { ProductsComponent } from 'shopping/components/products/products.compone
 import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
 import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
-import { LoginComponent } from './core/components/login/login.component';
 import { LoginASPComponent } from './core/components/login-asp/login-asp.component';
 import { SignUpAspComponent } from './core/components/sign-up-asp/sign-up-asp.component';
 import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'login-asp', component: LoginASPComponent },
   { path: 'sign-up-asp', component: SignUpAspComponent },
 

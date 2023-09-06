@@ -1,8 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Order } from 'shared/models/order';
-import { OrderService } from 'shared/services/order.service';
-import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import jwt_decode from 'jwt-decode';
@@ -26,8 +24,6 @@ export class ShippingFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private orderService: OrderService,
     private orderASPService: OrderAspService
   ) {}
 

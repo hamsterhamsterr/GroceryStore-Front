@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'shared/models/product';
-import { ProductService } from 'shared/services/product.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -22,10 +21,7 @@ export class AdminProductsComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
-    private productService: ProductService,
-    private productASPService: ProductsAspService
-  ) {
+  constructor(private productASPService: ProductsAspService) {
     this.filteredProducts! = new MatTableDataSource();
     this.subscription = this.productASPService
       .getAll()

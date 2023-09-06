@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from 'shared/services/product.service';
 import { Observable, Subscription, switchMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'shared/models/product';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { ProductsAspService } from 'shared/services/products-asp.service';
 import { ShoppingCartAspService } from 'shared/services/shopping-cart-asp.service';
@@ -20,10 +18,8 @@ export class ProductsComponent implements OnInit {
   cart$!: Observable<ShoppingCart>;
 
   constructor(
-    private productService: ProductService,
     private productASPService: ProductsAspService,
     private route: ActivatedRoute,
-    private shoppingCartService: ShoppingCartService,
     private shoppingCartASPService: ShoppingCartAspService
   ) {}
 

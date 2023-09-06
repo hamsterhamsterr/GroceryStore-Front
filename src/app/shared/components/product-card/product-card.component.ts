@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Product } from 'shared/models/product';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { ShoppingCartAspService } from 'shared/services/shopping-cart-asp.service';
 
@@ -14,10 +13,7 @@ export class ProductCardComponent {
   @Input('show-actions') showActions: boolean = true;
   @Input('shopping-cart') shoppingCart!: ShoppingCart;
 
-  constructor(
-    private cartService: ShoppingCartService,
-    private cartASPService: ShoppingCartAspService
-  ) {}
+  constructor(private cartASPService: ShoppingCartAspService) {}
 
   addToCart() {
     // this.cartService.addToCart(this.product);
