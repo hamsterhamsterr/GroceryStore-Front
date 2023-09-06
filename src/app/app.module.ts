@@ -18,7 +18,6 @@ import { CoreModule } from './core/core.module';
     ShoppingModule,
     CoreModule,
 
-    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
   ],
   providers: [],
