@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode';
 import { AppUser } from 'shared/models/app-user';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { ShoppingCartAspService } from './shopping-cart-asp.service';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthAspService {
     password: string
   ) {
     this.http
-      .post('http://localhost:5075/api/Account/register', {
+      .post(environment.baseURL + '/api/Account/register', {
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -45,7 +46,7 @@ export class AuthAspService {
     unauthorizedHandler: () => void
   ) {
     this.http
-      .post('http://localhost:5075/api/Account/login', {
+      .post(environment.baseURL + '/api/Account/login', {
         email: email,
         password: password,
       })

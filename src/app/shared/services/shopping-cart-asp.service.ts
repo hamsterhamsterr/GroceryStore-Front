@@ -14,6 +14,7 @@ import { ShoppingCart } from 'shared/models/shopping-cart';
 import { ShoppingCartItem } from 'shared/models/shopping-cart-item';
 import * as uuid from 'uuid';
 import { ShippingFormComponent } from 'shopping/components/shipping-form/shipping-form.component';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,7 @@ export class ShoppingCartAspService {
     }
 
     this.http
-      .post('http://localhost:5075/api/ShoppingCart/AddProduct', product.id, {
+      .post(environment.baseURL + '/api/ShoppingCart/AddProduct', product.id, {
         headers: {
           Authorization: 'Bearer ' + token,
           Authentication: token,
@@ -59,7 +60,7 @@ export class ShoppingCartAspService {
     }
 
     this.http
-      .delete('http://localhost:5075/api/ShoppingCart/' + product.id, {
+      .delete(environment.baseURL + '/api/ShoppingCart/' + product.id, {
         headers: {
           Authorization: 'Bearer ' + token,
           Authentication: token,
@@ -82,7 +83,7 @@ export class ShoppingCartAspService {
     }
 
     this.http
-      .delete('http://localhost:5075/api/ShoppingCart/ClearCart', {
+      .delete(environment.baseURL + '/api/ShoppingCart/ClearCart', {
         headers: {
           Authorization: 'Bearer ' + token,
           Authentication: token,
@@ -103,7 +104,7 @@ export class ShoppingCartAspService {
 
     this.http
       .post(
-        'http://localhost:5075/api/ShoppingCart/ReplaceAnonCartToUserCart',
+        environment.baseURL + '/api/ShoppingCart/ReplaceAnonCartToUserCart',
         {},
         {
           headers: {
@@ -138,7 +139,7 @@ export class ShoppingCartAspService {
     if (!token) return this.getLocalCart();
 
     return this.http
-      .get('http://localhost:5075/api/ShoppingCart', {
+      .get(environment.baseURL + '/api/ShoppingCart', {
         headers: {
           Authorization: 'Bearer ' + token,
           Authentication: token,
@@ -166,7 +167,7 @@ export class ShoppingCartAspService {
   private getLocalCart(): any {
     let cartId = this.getLocalCartId();
     return this.http
-      .get('http://localhost:5075/api/AnonShoppingCart/GetCart', {
+      .get(environment.baseURL + '/api/AnonShoppingCart/GetCart', {
         headers: { localStorageCartId: cartId },
       })
       .pipe(
@@ -203,7 +204,7 @@ export class ShoppingCartAspService {
     let cartId = this.getLocalCartId();
     this.http
       .post(
-        'http://localhost:5075/api/AnonShoppingCart/AddProductToCart',
+        environment.baseURL + '/api/AnonShoppingCart/AddProductToCart',
         product.id,
         {
           headers: { localStorageCartId: cartId },
@@ -221,7 +222,7 @@ export class ShoppingCartAspService {
     let cartId = this.getLocalCartId();
 
     this.http
-      .delete('http://localhost:5075/api/AnonShoppingCart/' + product.id, {
+      .delete(environment.baseURL + '/api/AnonShoppingCart/' + product.id, {
         headers: { localStorageCartId: cartId },
       })
       .pipe(
@@ -236,7 +237,7 @@ export class ShoppingCartAspService {
     let cartId = this.getLocalCartId();
 
     this.http
-      .delete('http://localhost:5075/api/AnonShoppingCart/ClearCart', {
+      .delete(environment.baseURL + '/api/AnonShoppingCart/ClearCart', {
         headers: { localStorageCartId: cartId },
       })
       .pipe(

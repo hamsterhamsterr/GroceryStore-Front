@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CategoryAspService } from './category-asp.service';
 import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class ProductsAspService {
         // add category id to product
         product.categoryId = category.id;
         this.http
-          .post('http://localhost:5075/api/Products', product, {
+          .post(environment.baseURL + '/api/Products', product, {
             headers: { Authorization: 'Bearer ' + token },
           })
           .subscribe();
@@ -30,7 +31,7 @@ export class ProductsAspService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('http://localhost:5075/api/Products').pipe(
+    return this.http.get(environment.baseURL + '/api/Products').pipe(
       map((products: any) => {
         for (let product of products) {
           // replace category object in product to a string
@@ -44,7 +45,7 @@ export class ProductsAspService {
 
   get(productId: string): Observable<any> {
     return this.http
-      .get('http://localhost:5075/api/Products/' + productId)
+      .get(environment.baseURL + '/api/Products/' + productId)
       .pipe(
         map((product: any) => {
           // replace category object in product to a string
@@ -65,7 +66,7 @@ export class ProductsAspService {
         product.categoryId = category.id;
         product.id = productId;
         this.http
-          .put('http://localhost:5075/api/Products', product, {
+          .put(environment.baseURL + '/api/Products', product, {
             headers: { Authorization: 'Bearer ' + token },
           })
           .subscribe();
@@ -77,7 +78,7 @@ export class ProductsAspService {
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
     this.http
-      .delete('http://localhost:5075/api/Products/' + productId, {
+      .delete(environment.baseURL + '/api/Products/' + productId, {
         headers: { Authorization: 'Bearer ' + token },
       })
       .subscribe();

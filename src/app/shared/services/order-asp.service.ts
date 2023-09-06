@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ShoppingCartAspService } from './shopping-cart-asp.service';
 import { Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class OrderAspService {
 
     return this.http
       .post(
-        'http://localhost:5075/api/Orders',
+        environment.baseURL + '/api/Orders',
         {
           addressLine1: shipping.addressLine1,
           addressLine2: shipping.addressLine2,
@@ -47,7 +48,7 @@ export class OrderAspService {
     let token = localStorage.getItem('grocery-store-jwt-token');
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
-    return this.http.get('http://localhost:5075/api/Orders/GetAllOrders', {
+    return this.http.get(environment.baseURL + '/api/Orders/GetAllOrders', {
       headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
@@ -56,7 +57,7 @@ export class OrderAspService {
     let token = localStorage.getItem('grocery-store-jwt-token');
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
-    return this.http.get('http://localhost:5075/api/Orders/GetOrdersByUser', {
+    return this.http.get(environment.baseURL + '/api/Orders/GetOrdersByUser', {
       headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
@@ -65,7 +66,7 @@ export class OrderAspService {
     let token = localStorage.getItem('grocery-store-jwt-token');
     if (!token) throw Error('Jwt token doesnt exist in local storage');
 
-    return this.http.get('http://localhost:5075/api/Orders/' + orderId, {
+    return this.http.get(environment.baseURL + '/api/Orders/' + orderId, {
       headers: { Authentication: token, Authorization: 'Bearer ' + token },
     });
   }
