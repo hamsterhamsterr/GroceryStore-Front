@@ -1,5 +1,5 @@
 <div class="login-form">
-  <h1>Login</h1>
+  <h1>Войти</h1>
 
   <div class="row">
     <div class="col-md-4">
@@ -9,6 +9,7 @@
         role="alert"
       >
         Invalid email or/and password.
+        Неправильный email или/и пароль.
         <button
           type="button"
           class="close close-invalid-email-or-and-password-alert"
@@ -33,14 +34,14 @@
             class="alert alert-danger"
             *ngIf="email.touched && email.invalid"
           >
-            <div *ngIf="email.errors!['required']">Email is required</div>
+            <div *ngIf="email.errors!['required']">Необходимо ввести email</div>
             <div *ngIf="email.errors!['pattern']">
-              Please enter a valid Email.
+              Пожалуйста введите правильный email
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label for="">Password</label>
+          <label for="">Пароль</label>
           <input
             #password="ngModel"
             ngModel
@@ -53,16 +54,16 @@
             class="alert alert-danger"
             *ngIf="password.touched && password.invalid"
           >
-            <div *ngIf="password.errors!['required']">Password is required</div>
+            <div *ngIf="password.errors!['required']">Необходимо ввести пароль</div>
           </div>
         </div>
-        <button [disabled]="!f.valid" class="btn btn-primary">Log In</button>
+        <button [disabled]="!f.valid" class="btn btn-primary">Войти</button>
       </form>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <p>Don't have an account? Sign up</p>
-      <a class="btn btn-primary" routerLink="/sign-up-asp">Sign Up</a>
+      <p>Нету учетной записи? Зарегистрируйтесь</p>
+      <a class="btn btn-primary" routerLink="/sign-up-asp">Регистрация</a>
     </div>
   </div>
 </div>

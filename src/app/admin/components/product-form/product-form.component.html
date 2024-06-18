@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <form (ngSubmit)="save(f.value)" #f="ngForm">
       <div class="form-group">
-        <label for="title">Title</label
+        <label for="title">Название</label
         ><input
           #title="ngModel"
           [(ngModel)]="product.title"
@@ -13,11 +13,11 @@
           required
         />
         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-          Title is required
+          Необходимо ввести название
         </div>
       </div>
       <div class="form-group">
-        <label for="price">Price</label>
+        <label for="price">Цена</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
@@ -34,12 +34,12 @@
           />
         </div>
         <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-          <div *ngIf="price.errors!['required']">Price is required</div>
-          <div *ngIf="price.errors!['pattern']">Price is invalid</div>
+          <div *ngIf="price.errors!['required']">Необходимо ввести цену</div>
+          <div *ngIf="price.errors!['pattern']">Некорректная цена</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="category">Category</label
+        <label for="category">Категория</label
         ><select
           #category="ngModel"
           [(ngModel)]="product.category"
@@ -57,11 +57,11 @@
           class="alert alert-danger"
           *ngIf="category.touched && category.invalid"
         >
-          Category is required.
+          Необходимо ввести категорию
         </div>
       </div>
       <div class="form-group">
-        <label for="imageUrl">Image URL</label
+        <label for="imageUrl">Ссылка на изображение продукта</label
         ><input
           #imageUrl="ngModel"
           [(ngModel)]="product.imageUrl"
@@ -76,20 +76,20 @@
           class="alert alert-danger"
           *ngIf="imageUrl.touched && imageUrl.invalid"
         >
-          <div *ngIf="imageUrl.errors!['required']">Image URL is required.</div>
+          <div *ngIf="imageUrl.errors!['required']">Необходимо ввести ссылку на изображение</div>
           <div *ngIf="imageUrl.errors!['pattern']">
-            Please enter a valid URL.
+            Пожалуйста введите правильную ссылку на изображение
           </div>
         </div>
       </div>
-      <button [disabled]="!f.valid" class="btn btn-primary">Save</button>
+      <button [disabled]="!f.valid" class="btn btn-primary">Сохранить</button>
       <button
         *ngIf="id"
         type="button"
         (click)="delete()"
         class="btn btn-danger btn-delete-product"
       >
-        Delete
+        Удалить
       </button>
     </form>
   </div>

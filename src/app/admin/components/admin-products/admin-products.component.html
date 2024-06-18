@@ -1,5 +1,5 @@
 <p>
-  <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+  <a routerLink="/admin/products/new" class="btn btn-primary">Добавить продукт</a>
 </p>
 <p>
   <input
@@ -20,19 +20,19 @@
   </ng-container>
 
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Название</th>
     <td mat-cell *matCellDef="let product">{{ product.title }}</td>
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Цена</th>
     <td mat-cell *matCellDef="let product">{{ product.price | currency }}</td>
   </ng-container>
 
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let product">
-      <a [routerLink]="['/admin/products/', product.id]">Edit</a>
+      <a [routerLink]="['/admin/products/', product.id]">Редактировать</a>
     </td>
   </ng-container>
 

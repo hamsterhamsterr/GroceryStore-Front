@@ -1,6 +1,6 @@
 <form #f="ngForm">
   <div class="form-group">
-    <label for="">Name</label>
+    <label for="">Имя</label>
     <input
       #name="ngModel"
       name="name"
@@ -10,18 +10,18 @@
       required
     />
     <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-      <div *ngIf="name.errors!['required']">Name is required.</div>
+      <div *ngIf="name.errors!['required']">Необходимо ввести имя</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">Address</label>
+    <label for="">Адрес</label>
     <input
       #addressLine1="ngModel"
       name="addressLine1"
       [(ngModel)]="shipping.addressLine1"
       type="text"
       class="form-control"
-      placeholder="Line 1"
+      placeholder="Улица"
       required
     />
     <div
@@ -29,7 +29,7 @@
       *ngIf="addressLine1.touched && addressLine1.invalid"
     >
       <div *ngIf="addressLine1.errors!['required']">
-        Address Line 1 is required.
+        Необходимо ввести улицу
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
       [(ngModel)]="shipping.addressLine2"
       type="text"
       class="form-control"
-      placeholder="Line 2"
+      placeholder="Номер дома и квартиры"
       required
     />
     <div
@@ -49,12 +49,12 @@
       *ngIf="addressLine2.touched && addressLine2.invalid"
     >
       <div *ngIf="addressLine2.errors!['required']">
-        Address Line 2 is required.
+        Необходимо ввести номер дома и квартиры
       </div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">City</label>
+    <label for="">Город</label>
     <input
       #city="ngModel"
       name="city"
@@ -64,10 +64,10 @@
       required
     />
     <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-      <div *ngIf="city.errors!['required']">City is required.</div>
+      <div *ngIf="city.errors!['required']">Необходимо ввести город</div>
     </div>
   </div>
   <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">
-    Place Order
+    Оформить заказ
   </button>
 </form>

@@ -2,8 +2,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Customer</th>
-      <th>Date</th>
+      <th>Покупатель</th>
+      <th>Дата</th>
       <th></th>
     </tr>
   </thead>
@@ -12,7 +12,7 @@
       <td>{{ order.customerName }}</td>
       <td>{{ order.datePlaced * 1000 | date }}</td>
       <td>
-        <a [routerLink]="['view-order/', order.id]">View</a>
+        <a [routerLink]="['view-order/', order.id]">Просмотр</a>
       </td>
     </tr>
   </tbody>

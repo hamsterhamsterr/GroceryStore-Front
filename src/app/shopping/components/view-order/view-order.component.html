@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-md-3">
-    <h1>Order: #{{ orderId }}</h1>
-    <p>Customer Name: {{ customerName }}</p>
-    <p>Date Placed: {{ datePlaced * 1000 | date }}</p>
-    <p>Address Line 1: {{ addressLine1 }}</p>
-    <p>Address Line 2: {{ addressLine2 }}</p>
-    <p>City: {{ city }}</p>
+    <h1>Заказ: #{{ orderId }}</h1>
+    <p>Имя заказчика: {{ customerName }}</p>
+    <p>Дата оформления: {{ datePlaced * 1000 | date }}</p>
+    <p>Улица: {{ addressLine1 }}</p>
+    <p>Дом, квартира: {{ addressLine2 }}</p>
+    <p>Город: {{ city }}</p>
   </div>
   <div class="col-md-9">
     <table class="table">
       <thead>
         <tr>
-          <th>Image</th>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total Price</th>
+          <th>Изображение</th>
+          <th>Название</th>
+          <th>Цена</th>
+          <th>Количество</th>
+          <th>Итоговая цена</th>
         </tr>
       </thead>
       <tbody>
